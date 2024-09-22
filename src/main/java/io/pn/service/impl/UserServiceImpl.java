@@ -136,15 +136,42 @@ public class UserServiceImpl implements UserService {
 		return userDto;
 	}
 
-	private User convertToUser(UserDto userD) {
+	private User convertToUser(UserDto u) {
 		User user = new User();
-		user.setUsername(userD.username());
-		user.setPassword(userD.password());
+		user.setUsername(u.username());
+		user.setPassword(u.password());
+		user.setEmail(u.email());
+		user.setMobileNo(u.mobileNo());
+		user.setDob(u.dob());
+		user.setAnnualCTC(u.annualCTC());
+		user.setAppStatus(u.appStatus());
+		user.setDoj(u.doj());
+		user.setTimeOfJoin(u.timeOfJoin());
+		user.setEpf(u.epf());
+		user.setSocialStatus(u.socialStatus());
+		user.setGender(u.gender());
+		user.setInsurenceAmt(u.insurenceAmt());
+		user.setDailyCost(u.dailyCost());
 		return user;
 	}
 
 	private UserDto convertToDto(User user) {
-		return new UserDto(user.getUsername(), user.getPassword());
+		return new UserDto(
+				user.getUsername(),
+				user.getPassword(), 
+				user.getEmail(),
+				user.getMobileNo(),
+				user.getAnnualCTC(),
+				user.getAppStatus(),
+				user.getDob(),
+				user.getDoj(),
+				user.getTimeOfJoin(),
+				user.getEpf(),
+				user.getSocialStatus(),
+				user.getGender(),
+				user.getInsurenceAmt(),
+				user.getDailyCost()
+				);
 	}
 
 }

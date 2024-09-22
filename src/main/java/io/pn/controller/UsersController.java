@@ -1,5 +1,8 @@
 package io.pn.controller;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +29,7 @@ public class UsersController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping(value = "/user")
+	@GetMapping(value = "/user/by-id")
 	public ResponseEntity<UserDto> getUserByUserId(@RequestParam Integer id) {
 		UserDto userByUserId = userService.getUserByUserId(id);
 		return new ResponseEntity<>(userByUserId, HttpStatusCode.valueOf(200));
@@ -77,6 +80,15 @@ public class UsersController {
 		else {
 			throw new UserNotAvailableException("User not available");
 		}
+	}
+	@GetMapping(value = "/user")
+	public UserDto getSampleUser() {
+		return new UserDto(
+				"papina", "pass", "sample@mail.com", 
+				"82938849l", BigDecimal.valueOf(596443.39), false, LocalDate.now(),
+				LocalDate.now(),LocalTime.NOON, 4020,  
+				false, 'M' , 1500.20, 1800.45
+				);
 	}
 
 }
